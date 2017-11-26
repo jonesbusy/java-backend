@@ -1,0 +1,91 @@
+<configuration>
+	
+	<jmxConfigurator />
+	
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
+		
+	<property name="LOG_PATTERN" value="%d{yyyy-MM-dd'T'HH:mm:ss.SSS'Z', 'UTC'} [%level] [Thread=%t] - %logger{36} # %msg %n"/>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+  
+	<appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${user.dir}/logs/java_backend_debug.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>DENY</onMatch>
+			<onMismatch>NEUTRAL</onMismatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>DENY</onMatch>
+			<onMismatch>NEUTRAL</onMismatch>
+		</filter>
+		<append>true</append>
+		<encoder>
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${user.dir}/logs/java_backend_debug_log_%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+  
+	<appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${user.dir}/logs/java_backend_error.log</file>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>WARN</level>
+		</filter>
+		<append>true</append>
+		<encoder>
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${user.dir}/logs/java_backend_error_log_%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<root level="TRACE">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="DEBUG_FILE" />
+		<appender-ref ref="ERROR_FILE" />
+	</root>
+	
+	<logger name="org.jboss" level="WARN" />
+	<logger name="org.jboss.resteasy.resteasy_jaxrs.i18n" level="WARN" />
+	<logger name="org.jboss.resteasy.cdi.i18n" level="WARN" />
+	<logger name="org.apache.http" level="INFO" />
+	<logger name="org.eclipse.persistence" level="WARN" />
+	<logger name="org.glassfish.jersey" level="WARN" />
+	<logger name="org.apache.activemq" level="WARN"/>
+	<logger name="org.apache.mina" level="WARN" />
+	<logger name="javax.management" level="INFO" />
+	<logger name="com.sun.net.httpserver" level="DEBUG" />
+	<logger name="org.jvnet.hk2" level="INFO" />
+	<logger name="sun.rmi" level="WARN" />
+	<logger name="org.quartz" level="INFO" />
+	<logger name="org.xnio" level="WARN" />
+	<logger name="org.jboss.weld" level="WARN" />
+	<logger name="org.jboss.weld.Bootstrap" level="ERROR" />
+	<logger name="io.undertow" level="INFO" />
+	<logger name="org.jboss.resteasy" level="TRACE" />
+	<logger name="org.hibernate.validator" level="WARN" />
+	<logger name="com.sun.mail" level="INFO" />
+	<logger name="javax.activation" level="INFO" />
+	
+	<!-- Disable special global java utils logger -->
+	<logger name="global" level="OFF" />
+	
+</configuration>

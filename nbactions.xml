@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+	<action>
+		<actionName>CUSTOM-Clean-and-build</actionName>
+		<displayName>Clean and build</displayName>
+		<goals>
+			<goal>clean</goal>
+			<goal>install</goal>
+		</goals>
+	</action>
+	<action>
+		<actionName>CUSTOM-Run</actionName>
+		<displayName>Run</displayName>
+		<goals>
+			<goal>clean</goal>
+			<goal>install</goal>
+			<goal>exec:java</goal>
+			<goal>-Ddelaye.cloud.build.package.skip=true</goal>
+			<goal>-Ddelaye.cloud.backend.db.host=localhost</goal>
+		</goals>
+	</action>
+	<action>
+		<actionName>CUSTOM-Run-With-Schema</actionName>
+		<displayName>Run (With Schema)</displayName>
+		<goals>
+			<goal>clean</goal>
+			<goal>install</goal>
+			<goal>exec:java</goal>
+			<goal>-PcreateSchema</goal>
+			<goal>-Ddelaye.cloud.build.package.skip=true</goal>
+			<goal>-Ddelaye.cloud.backend.db.host=localhost</goal>
+		</goals>
+	</action>
+	<action>
+		<actionName>CUSTOM-download-sources-and-javadocs</actionName>
+		<displayName>Download sources &amp; javadocs</displayName>
+		<goals>
+			<goal>dependency:sources</goal>
+			<goal>dependency:resolve</goal>
+			<goal>-e</goal>
+		</goals>
+		<properties>
+			<classifier>javadoc</classifier>
+		</properties>
+	</action>
+</actions>

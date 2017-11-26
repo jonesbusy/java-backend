@@ -1,0 +1,89 @@
+version: '2.0'
+  
+services:
+
+  #
+  # DB
+  #
+  java-backend-db:
+    image: mysql:5.7.20
+    volumes:
+      - iot-java-backend-db:/var/lib/mysql
+    hostname: db
+    environment:
+     MYSQL_ROOT_PASSWORD: JAVA-BACKEND
+     MYSQL_DATABASE: JAVA-BACKEND
+     MYSQL_USER: JAVA-BACKEND
+     MYSQL_PASSWORD: JAVA-BACKEND
+    networks:
+      iot:
+    ports:
+      - "33306:3306"
+      
+  #
+  # BACKEND
+  #
+  java-backend:
+    image: jonesbusy/java-backend:latest
+    hostname: java-backend
+    environment:
+      JAVA_OPTS: -Xms256m -Xmx512m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true
+    networks:
+      iot:
+    build:
+      context: .
+      args:
+        version: 0.1-SNAPSHOT
+      
+  #
+  # Load balancer
+  #
+  java-backend-lb:
+    image: dockercloud/haproxy:1.6.7
+    links:
+      - java-backend
+    container_name: java-backend-lb
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      iot:
+    environment:
+      - MODE=http
+    ports:
+      - "48080:80"
+
+
+  #
+  # MQTT Broker
+  #
+  artemis:
+    image: jonesbusy/mqtt-broker:latest
+    volumes:
+      - artemis_data:/var/lib/artemis/data
+      - artemis_tmp:/var/lib/artemis/tmp
+    hostname: artemis
+    command: ["/var/lib/artemis/bin/artemis",  "run"]
+    entrypoint: /docker-entrypoint.sh
+    networks:
+      iot:
+    ports:
+      - "1883:1883"
+      
+        
+#
+# Networking
+#
+networks:
+  iot:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"  
+
+
+#
+# Volumes
+#    
+volumes:
+ artemis_data:
+ artemis_tmp:
+ iot-java-backend-db:
