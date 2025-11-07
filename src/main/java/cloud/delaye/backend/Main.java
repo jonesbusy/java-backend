@@ -66,7 +66,22 @@ public class Main {
 			java.util.Map<String, String> properties = new java.util.HashMap<>();
 			properties.put("eclipselink.ddl-generation", schemaGeneration);
 			properties.put("eclipselink.ddl-generation.output-mode", "database");
+			
+			// Override database connection properties from system properties if provided
+			String dbHost = System.getProperty("delaye.cloud.backend.db.host");
+			String dbPort = System.getProperty("delaye.cloud.backend.db.port", "3306");
+			String dbName = System.getProperty("delaye.cloud.backend.db.name", "JAVA-BACKEND");
+			if (dbHost != null) {
+				String jdbcUrl = "jdbc:mariadb://" + dbHost + ":" + dbPort + "/" + dbName + "?autoReconnectForPools=true&autoCommit=true";
+				LOG.info("Using database URL: {}", jdbcUrl);
+				properties.put("jakarta.persistence.jdbc.url", jdbcUrl);
+			}
+			
 			entityManagerFactory = Persistence.createEntityManagerFactory("PU", properties);
+			// Trigger schema generation by creating and closing an EntityManager
+			jakarta.persistence.EntityManager em = entityManagerFactory.createEntityManager();
+			em.close();
+			LOG.info("Schema generation completed");
 		} else {
 			entityManagerFactory = Persistence.createEntityManagerFactory("PU");
 		}
