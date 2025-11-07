@@ -45,6 +45,9 @@
 		
 		<delaye.cloud.database.current>${delaye.cloud.backend.db.name}</delaye.cloud.database.current>
 		
+		<!-- Schema generation: none (default), create-tables, or drop-and-create-tables -->
+		<delaye.cloud.backend.schema.generation>none</delaye.cloud.backend.schema.generation>
+		
 		<!-- To skip the generation of package -->
 		<delaye.cloud.build.package.skip>false</delaye.cloud.build.package.skip>
 		
@@ -566,6 +569,13 @@
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator-cdi</artifactId>
 			<version>8.0.1.Final</version>
+		</dependency>
+		
+		<!-- EL implementation for Hibernate Validator -->
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>jakarta.el</artifactId>
+			<version>4.0.2</version>
 		</dependency>
 		
 		<!-- Test dependencies -->

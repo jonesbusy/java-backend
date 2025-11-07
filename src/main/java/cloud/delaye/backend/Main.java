@@ -5,10 +5,13 @@ import com.sun.net.httpserver.HttpServer;
 import io.undertow.Undertow;
 import io.undertow.servlet.Servlets;
 import io.undertow.servlet.api.DeploymentInfo;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import org.slf4j.bridge.SLF4JBridgeHandler;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.ws.rs.core.Application;
@@ -59,8 +62,33 @@ public class Main {
 		
 		LOG.info("Starting IOT Java backend Please be patient...");
 		
-		// The entity manager factory
-		entityManagerFactory = Persistence.createEntityManagerFactory("PU");
+		// The entity manager factory with optional schema generation
+		String schemaGeneration = System.getProperty("delaye.cloud.backend.schema.generation", "none");
+		if (!"none".equals(schemaGeneration)) {
+			LOG.info("Schema generation enabled: {}", schemaGeneration);
+			Map<String, String> properties = new HashMap<>();
+			properties.put("eclipselink.ddl-generation", schemaGeneration);
+			properties.put("eclipselink.ddl-generation.output-mode", "database");
+			
+			// Override database connection properties from system properties if provided
+			String dbHost = System.getProperty("delaye.cloud.backend.db.host");
+			String dbPort = System.getProperty("delaye.cloud.backend.db.port", "3306");
+			String dbName = System.getProperty("delaye.cloud.backend.db.name", "JAVA-BACKEND");
+			if (dbHost != null) {
+				String jdbcUrl = "jdbc:mariadb://" + dbHost + ":" + dbPort + "/" + dbName + "?autoReconnectForPools=true&autoCommit=true";
+				LOG.info("Using database URL: {}", jdbcUrl);
+				properties.put("jakarta.persistence.jdbc.url", jdbcUrl);
+			}
+			
+			entityManagerFactory = Persistence.createEntityManagerFactory("PU", properties);
+			// Trigger schema generation by creating an EntityManager to initialize the persistence context
+			try (EntityManager em = entityManagerFactory.createEntityManager()) {
+				// EntityManager initialization triggers DDL generation when configured
+			}
+			LOG.info("Schema generation completed");
+		} else {
+			entityManagerFactory = Persistence.createEntityManagerFactory("PU");
+		}
 
 		// Start the HTTP containers
 		startHttpContainer(ApiRestApplication.class, HTTP_PORT);
