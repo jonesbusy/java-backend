@@ -1,11 +1,11 @@
 package cloud.delaye.backend.api;
 
 import cloud.delaye.backend.enums.EApiHttpStatusCodes;
-import io.probedock.jee.validation.ApiErrorResponse;
+import cloud.delaye.backend.validation.ApiErrorResponse;
 import java.util.Map;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.HttpHeaders;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 /**
  * API backend response builder to create a JAX-RS response.
@@ -20,7 +20,7 @@ public class BackendResponse {
 	private final Response.ResponseBuilder jerseyResponseBuilder;
 
 	/**
-	 * Constructs an HTTP 200 OK response with no body. Call <tt>configure</tt> with an
+	 * Constructs an HTTP 200 OK response with no body. Call {@code configure} with an
 	 * {@link EApiHttpStatusCodes} to change the status code.
 	 */
 	public BackendResponse() {
@@ -33,7 +33,7 @@ public class BackendResponse {
 
 	/**
 	 * Constructs an HTTP 200 OK response with the specified entity as the body. Call
-	 * <tt>configure</tt> with an {@link EApiHttpStatusCodes} to change the status code.
+	 * {@code configure} with an {@link EApiHttpStatusCodes} to change the status code.
 	 *
 	 * @param entity the entity to serialize
 	 */

@@ -1,7 +1,7 @@
 
 package cloud.delaye.backend.api.pagination;
 
-import javax.ws.rs.QueryParam;
+import jakarta.ws.rs.QueryParam;
 
 /**
  *

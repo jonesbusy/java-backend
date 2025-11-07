@@ -1,11 +1,11 @@
 package cloud.delaye.backend.api.mapper;
 
 import cloud.delaye.backend.api.MapperMapping;
-import io.probedock.jee.validation.ApiErrorResponse;
-import io.probedock.jee.validation.IErrorCode;
-import io.probedock.jee.validation.IErrorLocationType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
+import cloud.delaye.backend.validation.ApiErrorResponse;
+import cloud.delaye.backend.validation.IErrorCode;
+import cloud.delaye.backend.validation.IErrorLocationType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
 import cloud.delaye.backend.api.BackendResponse;
 
 /**

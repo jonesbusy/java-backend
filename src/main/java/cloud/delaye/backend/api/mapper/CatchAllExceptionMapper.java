@@ -1,7 +1,7 @@
 package cloud.delaye.backend.api.mapper;
 
-import io.probedock.jee.validation.ApiErrorResponse;
-import javax.ws.rs.ext.Provider;
+import cloud.delaye.backend.validation.ApiErrorResponse;
+import jakarta.ws.rs.ext.Provider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -3,8 +3,8 @@ package cloud.delaye.backend.api.pagination;
 
 import cloud.delaye.backend.enums.EApiErrorLocationType;
 import cloud.delaye.backend.enums.EApiErrorCodes;
-import io.probedock.jee.validation.ApiErrorResponse;
-import io.probedock.jee.validation.ApiErrorsException;
+import cloud.delaye.backend.validation.ApiErrorResponse;
+import cloud.delaye.backend.validation.ApiErrorsException;
 
 /**
  * Helper to build pagination when sending a response to the user

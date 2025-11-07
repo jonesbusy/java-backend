@@ -1,6 +1,6 @@
 package cloud.delaye.backend.api;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 /**
  * Configuration object for an {@link BackendResponse} builder. Implementations will be passed a

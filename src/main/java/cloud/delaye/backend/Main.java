@@ -10,11 +10,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import org.slf4j.bridge.SLF4JBridgeHandler;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.ws.rs.core.Application;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.ws.rs.core.Application;
 import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
-import org.jboss.resteasy.spi.ResteasyDeployment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -138,17 +137,12 @@ public class Main {
 		
 		server.start(builder);
 		
-		// Rest easy deployment configuration
-		ResteasyDeployment deployment = new ResteasyDeployment();
-		deployment.setApplicationClass(application.getCanonicalName());
-		deployment.setInjectorFactoryClass("org.jboss.resteasy.cdi.CdiInjectorFactory");		
-		
-		DeploymentInfo deploymentInfo = server.undertowDeployment(deployment)
+		// Deploy the application
+		DeploymentInfo deploymentInfo = server.undertowDeployment(application)
 				.setClassLoader(application.getClassLoader())
                 .setContextPath("/api")
 				.setDeploymentName("IOT")
 				.addListeners(Servlets.listener(org.jboss.weld.environment.servlet.Listener.class));
-		
 		
 		server.deploy(deploymentInfo);
 		

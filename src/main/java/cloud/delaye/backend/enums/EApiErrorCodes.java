@@ -1,6 +1,6 @@
 package cloud.delaye.backend.enums;
 
-import io.probedock.jee.validation.IErrorCode;
+import cloud.delaye.backend.validation.IErrorCode;
 
 /**
  * List of error code supported by the backend

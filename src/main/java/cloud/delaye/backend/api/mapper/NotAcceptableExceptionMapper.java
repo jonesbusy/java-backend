@@ -3,9 +3,9 @@ package cloud.delaye.backend.api.mapper;
 
 import cloud.delaye.backend.api.DefaultLocationType;
 import cloud.delaye.backend.api.DefaultLocationType.LocationTypes;
-import io.probedock.jee.validation.ApiErrorResponse;
-import javax.ws.rs.NotAcceptableException;
-import javax.ws.rs.ext.Provider;
+import cloud.delaye.backend.validation.ApiErrorResponse;
+import jakarta.ws.rs.NotAcceptableException;
+import jakarta.ws.rs.ext.Provider;
 
 
 /**

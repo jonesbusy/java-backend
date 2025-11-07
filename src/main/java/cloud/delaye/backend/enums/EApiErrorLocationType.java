@@ -1,6 +1,6 @@
 package cloud.delaye.backend.enums;
 
-import io.probedock.jee.validation.IErrorLocationType;
+import cloud.delaye.backend.validation.IErrorLocationType;
 
 
 
