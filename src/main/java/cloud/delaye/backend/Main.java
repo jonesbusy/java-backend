@@ -5,10 +5,13 @@ import com.sun.net.httpserver.HttpServer;
 import io.undertow.Undertow;
 import io.undertow.servlet.Servlets;
 import io.undertow.servlet.api.DeploymentInfo;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import org.slf4j.bridge.SLF4JBridgeHandler;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.ws.rs.core.Application;
@@ -63,7 +66,7 @@ public class Main {
 		String schemaGeneration = System.getProperty("delaye.cloud.backend.schema.generation", "none");
 		if (!"none".equals(schemaGeneration)) {
 			LOG.info("Schema generation enabled: {}", schemaGeneration);
-			java.util.Map<String, String> properties = new java.util.HashMap<>();
+			Map<String, String> properties = new HashMap<>();
 			properties.put("eclipselink.ddl-generation", schemaGeneration);
 			properties.put("eclipselink.ddl-generation.output-mode", "database");
 			
@@ -79,8 +82,9 @@ public class Main {
 			
 			entityManagerFactory = Persistence.createEntityManagerFactory("PU", properties);
 			// Trigger schema generation by creating and closing an EntityManager
-			jakarta.persistence.EntityManager em = entityManagerFactory.createEntityManager();
-			em.close();
+			try (EntityManager em = entityManagerFactory.createEntityManager()) {
+				// Entity manager is automatically closed by try-with-resources
+			}
 			LOG.info("Schema generation completed");
 		} else {
 			entityManagerFactory = Persistence.createEntityManagerFactory("PU");
