@@ -1,7 +1,6 @@
 package cloud.delaye.backend;
 
 import cloud.delaye.backend.api.ApiRestApplication;
-import cloud.delaye.backend.task.MQTTConnection;
 import com.sun.net.httpserver.HttpServer;
 import io.undertow.Undertow;
 import io.undertow.servlet.Servlets;
@@ -65,11 +64,6 @@ public class Main {
 
 		// Start the HTTP containers
 		startHttpContainer(ApiRestApplication.class, HTTP_PORT);
-		
-		// Connect to MQTT client
-		MQTTConnection.configure("tcp://127.0.0.1:1883", "iot", "iot");
-		MQTTConnection connection = MQTTConnection.getInstance();
-		connection.initialize();
 		
 		LOG.info("Successfully started IOT backend");
 		LOG.info("REST API available at 'http://127.0.0.1:" + HTTP_PORT + "/api'");

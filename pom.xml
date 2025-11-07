@@ -30,12 +30,12 @@
 		<maven.compiler.source>21</maven.compiler.source>
 		<maven.compiler.target>21</maven.compiler.target>
 		
-		<!-- MySQL connector -->
-		<delaye.cloud.mysql.connector.version>8.0.33</delaye.cloud.mysql.connector.version>
+		<!-- MariaDB connector -->
+		<delaye.cloud.mariadb.connector.version>3.3.1</delaye.cloud.mariadb.connector.version>
 		
 		<!-- Database connection -->
 		<delaye.cloud.backend.db.name>JAVA-BACKEND</delaye.cloud.backend.db.name>
-		<delaye.cloud.backend.db.driver>com.mysql.jdbc.Driver</delaye.cloud.backend.db.driver>
+		<delaye.cloud.backend.db.driver>org.mariadb.jdbc.Driver</delaye.cloud.backend.db.driver>
 		<delaye.cloud.backend.db.port>3306</delaye.cloud.backend.db.port>
 		<delaye.cloud.backend.db.username>JAVA-BACKEND</delaye.cloud.backend.db.username>
 		<delaye.cloud.backend.db.password>JAVA-BACKEND</delaye.cloud.backend.db.password>
@@ -50,11 +50,6 @@
 		
 		<!-- To skip the generation of javadoc -->
 		<delaye.cloud.javadoc.generation.skip>true</delaye.cloud.javadoc.generation.skip>
-		
-		<!-- The URL of the MQTT broker -->
-		<delaye.cloud.mqtt.broker.url>tcp://127.0.0.1:1883</delaye.cloud.mqtt.broker.url>
-		<delaye.cloud.mqtt.broker.username>iot</delaye.cloud.mqtt.broker.username>
-		<delaye.cloud.mqtt.broker.password>iot</delaye.cloud.mqtt.broker.password>
 				
 	</properties>
 
@@ -141,7 +136,7 @@
 									<databaseProductName>MySQL</databaseProductName>
 									<persistenceUnitName>GenPU</persistenceUnitName>
 									<jdbcDriver>${delaye.cloud.backend.db.driver}</jdbcDriver>
-									<jdbcUrl>jdbc:mysql:${delaye.cloud.backend.db.location}</jdbcUrl>
+									<jdbcUrl>jdbc:mariadb:${delaye.cloud.backend.db.location}</jdbcUrl>
 									<jdbcUser>${delaye.cloud.backend.db.username}</jdbcUser>
 									<jdbcPassword>${delaye.cloud.backend.db.password}</jdbcPassword>
 								</configuration>
@@ -149,9 +144,9 @@
 						</executions>
 						<dependencies>
 							<dependency>
-								<groupId>mysql</groupId>
-								<artifactId>mysql-connector-java</artifactId>
-								<version>${delaye.cloud.mysql.connector.version}</version>
+								<groupId>org.mariadb.jdbc</groupId>
+								<artifactId>mariadb-java-client</artifactId>
+								<version>${delaye.cloud.mariadb.connector.version}</version>
 							</dependency>
 						</dependencies>
 					</plugin>
@@ -172,7 +167,7 @@
 								</goals>
 								<configuration>
 									<encoding>UTF-8</encoding>
-									<url>jdbc:mysql:${delaye.cloud.backend.db.url}</url>
+									<url>jdbc:mariadb:${delaye.cloud.backend.db.url}</url>
 									<srcFiles>
 										<srcFile>target/classes/drop-and-create.sql</srcFile>
 									</srcFiles>
@@ -189,7 +184,7 @@
 								</goals>
 								<configuration>
 									<encoding>UTF-8</encoding>
-									<url>jdbc:mysql:${delaye.cloud.backend.db.location}</url>
+									<url>jdbc:mariadb:${delaye.cloud.backend.db.location}</url>
 									<srcFiles>
 										<srcFile>target/classes/insert.sql</srcFile>
 									</srcFiles>
@@ -201,9 +196,9 @@
 
 						<dependencies>
 							<dependency>
-								<groupId>mysql</groupId>
-								<artifactId>mysql-connector-java</artifactId>
-								<version>${delaye.cloud.mysql.connector.version}</version>
+								<groupId>org.mariadb.jdbc</groupId>
+								<artifactId>mariadb-java-client</artifactId>
+								<version>${delaye.cloud.mariadb.connector.version}</version>
 							</dependency>
 						</dependencies>
 
@@ -347,7 +342,6 @@
 						</goals>
 						<configuration>
 							<includeScope>runtime</includeScope>
-							<excludeScope>test</excludeScope>
 							<outputDirectory>package/lib</outputDirectory>
 							<overWriteReleases>false</overWriteReleases>
 							<overWriteSnapshots>false</overWriteSnapshots>
@@ -446,13 +440,7 @@
 			<version>4.0.1</version>
 		</dependency>
 		
-		<!-- MQTT client -->
-		<dependency>
-			<groupId>org.fusesource.mqtt-client</groupId>
-			<artifactId>mqtt-client</artifactId>
-			<version>1.12</version>
-		</dependency>
-			
+		
 		<!-- Quartz -->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
@@ -567,11 +555,11 @@
 			<version>4.0.4</version>
 		</dependency>
 		
-		<!-- MySQL connector -->
+		<!-- MariaDB connector -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.33</version>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>3.3.1</version>
 		</dependency>	
 			
 		<dependency>

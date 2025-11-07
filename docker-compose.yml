@@ -6,15 +6,15 @@ services:
   # DB
   #
   java-backend-db:
-    image: mysql:5.7.20
+    image: mariadb:11.2
     volumes:
       - iot-java-backend-db:/var/lib/mysql
     hostname: db
     environment:
-     MYSQL_ROOT_PASSWORD: JAVA-BACKEND
-     MYSQL_DATABASE: JAVA-BACKEND
-     MYSQL_USER: JAVA-BACKEND
-     MYSQL_PASSWORD: JAVA-BACKEND
+     MARIADB_ROOT_PASSWORD: JAVA-BACKEND
+     MARIADB_DATABASE: JAVA-BACKEND
+     MARIADB_USER: JAVA-BACKEND
+     MARIADB_PASSWORD: JAVA-BACKEND
     networks:
       iot:
     ports:
@@ -52,23 +52,6 @@ services:
     ports:
       - "48080:80"
 
-
-  #
-  # MQTT Broker
-  #
-  artemis:
-    image: jonesbusy/mqtt-broker:latest
-    volumes:
-      - artemis_data:/var/lib/artemis/data
-      - artemis_tmp:/var/lib/artemis/tmp
-    hostname: artemis
-    command: ["/var/lib/artemis/bin/artemis",  "run"]
-    entrypoint: /docker-entrypoint.sh
-    networks:
-      iot:
-    ports:
-      - "1883:1883"
-      
         
 #
 # Networking
@@ -84,6 +67,4 @@ networks:
 # Volumes
 #    
 volumes:
- artemis_data:
- artemis_tmp:
  iot-java-backend-db:
