@@ -247,7 +247,6 @@ public abstract class AbstractDao<T extends IEntity> implements IDao<T> {
 	}
 
 	/**
-	/**
 	 * Create a query from a query string
 	 *
 	 * @param queryString The query string to get the query object
