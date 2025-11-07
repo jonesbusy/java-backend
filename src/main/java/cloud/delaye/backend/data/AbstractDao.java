@@ -149,10 +149,6 @@ public abstract class AbstractDao<T extends IEntity> implements IDao<T> {
 	@Override
 	public void remove(T entity) {
 		em.remove(attach(entity));
-/**
-	 * Get the entity manager.
-	 * @return the entity manager
-	 */
 	}
 
 	@Override
@@ -160,6 +156,10 @@ public abstract class AbstractDao<T extends IEntity> implements IDao<T> {
 		remove(findById(id));
 	}
 
+	/**
+	 * Refresh the entity.
+	 * @param entity the entity to refresh
+	 */
 	public void refresh(Entity entity) {
 		em.refresh(entity);
 	}
@@ -247,12 +247,7 @@ public abstract class AbstractDao<T extends IEntity> implements IDao<T> {
 	}
 
 	/**
-/**
-	 * Execute a typed query.
-	 * @param <U> the result type
-	 * @param query the query to execute
-	 * @return the query result
-	 */
+	/**
 	 * Create a query from a query string
 	 *
 	 * @param queryString The query string to get the query object
