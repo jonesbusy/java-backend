@@ -59,8 +59,17 @@ public class Main {
 		
 		LOG.info("Starting IOT Java backend Please be patient...");
 		
-		// The entity manager factory
-		entityManagerFactory = Persistence.createEntityManagerFactory("PU");
+		// The entity manager factory with optional schema generation
+		String schemaGeneration = System.getProperty("delaye.cloud.backend.schema.generation", "none");
+		if (!"none".equals(schemaGeneration)) {
+			LOG.info("Schema generation enabled: {}", schemaGeneration);
+			java.util.Map<String, String> properties = new java.util.HashMap<>();
+			properties.put("eclipselink.ddl-generation", schemaGeneration);
+			properties.put("eclipselink.ddl-generation.output-mode", "database");
+			entityManagerFactory = Persistence.createEntityManagerFactory("PU", properties);
+		} else {
+			entityManagerFactory = Persistence.createEntityManagerFactory("PU");
+		}
 
 		// Start the HTTP containers
 		startHttpContainer(ApiRestApplication.class, HTTP_PORT);

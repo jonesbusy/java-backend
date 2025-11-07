@@ -30,11 +30,9 @@
 		<encoder>
 			<pattern>${LOG_PATTERN}</pattern>
 		</encoder>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<fileNamePattern>${user.dir}/logs/java_backend_debug_log_%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
-			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<maxFileSize>10MB</maxFileSize>
-			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxFileSize>10MB</maxFileSize>
 			<maxHistory>30</maxHistory>
 		</rollingPolicy>
 	</appender>
@@ -48,11 +46,9 @@
 		<encoder>
 			<pattern>${LOG_PATTERN}</pattern>
 		</encoder>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<fileNamePattern>${user.dir}/logs/java_backend_error_log_%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
-			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<maxFileSize>10MB</maxFileSize>
-			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxFileSize>10MB</maxFileSize>
 			<maxHistory>30</maxHistory>
 		</rollingPolicy>
 	</appender>

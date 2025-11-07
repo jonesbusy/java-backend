@@ -18,6 +18,9 @@
       <property name="jakarta.persistence.jdbc.password" value="${delaye.cloud.backend.db.password}"/>
       <property name="eclipselink.cache.shared.default" value="false"/>
       <property name="eclipselink.target-database" value="MySQL"/>
+      <!-- Schema generation: controlled by system property delaye.cloud.backend.schema.generation (none, drop-and-create-tables, create-tables) -->
+      <property name="eclipselink.ddl-generation" value="${delaye.cloud.backend.schema.generation}"/>
+      <property name="eclipselink.ddl-generation.output-mode" value="database"/>
     </properties>
   </persistence-unit>
   
