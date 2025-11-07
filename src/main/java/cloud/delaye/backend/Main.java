@@ -81,9 +81,9 @@ public class Main {
 			}
 			
 			entityManagerFactory = Persistence.createEntityManagerFactory("PU", properties);
-			// Trigger schema generation by creating and closing an EntityManager
+			// Trigger schema generation by creating an EntityManager to initialize the persistence context
 			try (EntityManager em = entityManagerFactory.createEntityManager()) {
-				// Entity manager is automatically closed by try-with-resources
+				// EntityManager initialization triggers DDL generation when configured
 			}
 			LOG.info("Schema generation completed");
 		} else {
