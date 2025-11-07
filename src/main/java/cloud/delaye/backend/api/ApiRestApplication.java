@@ -13,10 +13,10 @@ import cloud.delaye.backend.api.mapper.UnrecognizedPropertyExceptionMapper;
 import cloud.delaye.backend.resource.EventResource;
 import cloud.delaye.backend.enums.EApiErrorCodes;
 import cloud.delaye.backend.json.JsonObjectMapper;
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import org.jboss.resteasy.plugins.providers.jackson.ResteasyJackson2Provider;
 import java.util.HashSet;
 import java.util.Set;
-import javax.ws.rs.core.Application;
+import jakarta.ws.rs.core.Application;
 
 /**
  * Root JAX-RS application for the /api path.
@@ -25,10 +25,16 @@ import javax.ws.rs.core.Application;
  */
 public class ApiRestApplication extends Application {
 	
+	/**
+	 * Default constructor.
+	 */
+	public ApiRestApplication() {
+	}
+
 	@Override
 	public Set<Object> getSingletons() {
 		final Set<Object> singletons = new HashSet<>(4);
-		singletons.add(new JacksonJsonProvider());
+		singletons.add(new ResteasyJackson2Provider());
 		singletons.add(new JsonObjectMapper());
 		return singletons;
 	}

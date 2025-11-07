@@ -2,7 +2,7 @@
 package cloud.delaye.backend.api.pagination;
 
 import java.util.Map;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 import cloud.delaye.backend.api.IApiResponseConfig;
 
 /**

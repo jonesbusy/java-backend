@@ -1,7 +1,7 @@
 package cloud.delaye.backend.api.mapper;
 
-import io.probedock.jee.validation.ApiErrorResponse;
-import javax.ws.rs.ext.Provider;
+import cloud.delaye.backend.validation.ApiErrorResponse;
+import jakarta.ws.rs.ext.Provider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,9 +15,16 @@ import org.slf4j.LoggerFactory;
 @Provider
 public class CatchAllExceptionMapper extends AbstractApiExceptionMapper<Exception> {
 
-	//<editor-fold defaultstate="collapsed" desc="Logger">
+	/**
+	 * Logger for this class.
+	 */
 	private Logger log = LoggerFactory.getLogger(CatchAllExceptionMapper.class);
-	//</editor-fold>
+	
+	/**
+	 * Default constructor.
+	 */
+	public CatchAllExceptionMapper() {
+	}
 	
 	@Override
 	public ApiErrorResponse toApiErrorResponse(Exception exception) {

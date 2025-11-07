@@ -1,6 +1,6 @@
 package cloud.delaye.backend.enums;
 
-import io.probedock.jee.validation.IErrorCode;
+import cloud.delaye.backend.validation.IErrorCode;
 
 /**
  * List of error code supported by the backend
@@ -60,10 +60,21 @@ import io.probedock.jee.validation.IErrorCode;
 	SERVER_UNEXPECTED(4000, EApiHttpStatusCodes.INTERNAL_SERVER_ERROR);
 	
 	
-	//<editor-fold defaultstate="collapsed" desc="Implementation">
+	/**
+	 * The error code.
+	 */
 	private final int code;
+	
+	/**
+	 * The default HTTP status code.
+	 */
 	private final EApiHttpStatusCodes defaultHttpStatusCode;
 	
+	/**
+	 * Constructor for error codes.
+	 * @param code the error code
+	 * @param defaultHttpStatusCode the default HTTP status code
+	 */
 	private EApiErrorCodes(int code, EApiHttpStatusCodes defaultHttpStatusCode) {
 		this.code = code;
 		this.defaultHttpStatusCode = defaultHttpStatusCode;
@@ -78,8 +89,12 @@ import io.probedock.jee.validation.IErrorCode;
 	public int getCode() {
 		return code;
 	}
-	//</editor-fold>
 	
+	/**
+	 * Find an error code by its code value.
+	 * @param code the code to search for
+	 * @return the error code or SERVER_UNEXPECTED if not found
+	 */
 	public static EApiErrorCodes fromCode(int code) {
 		for(EApiErrorCodes error : EApiErrorCodes.values()) {
 			if(error.getCode() == code) {

@@ -1,8 +1,8 @@
 package cloud.delaye.backend.api.mapper;
 
-import io.probedock.jee.validation.ApiErrorResponse;
+import cloud.delaye.backend.validation.ApiErrorResponse;
 import java.io.EOFException;
-import javax.ws.rs.ext.Provider;
+import jakarta.ws.rs.ext.Provider;
 
 /**
  * Maps EOF exceptions (for example due to an empty request body) to an HTTP 400 Bad Request API

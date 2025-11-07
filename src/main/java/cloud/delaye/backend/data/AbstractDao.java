@@ -2,18 +2,18 @@
 package cloud.delaye.backend.data;
 
 import java.util.List;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
+import jakarta.ejb.TransactionManagement;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.NonUniqueResultException;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
 
 /**
  * DAO that support user transaction to define the transaction boundaries
@@ -35,10 +35,16 @@ public abstract class AbstractDao<T extends IEntity> implements IDao<T> {
 	 */
 	private EntityTransaction transaction;
 	
-	// The entity type managed by the DAO
+	/**
+	 * The entity type managed by the DAO.
+	 */
 	private final Class<T> entityClass;
 	
-	//<editor-fold defaultstate="collapsed" desc="Constructors">
+	/**
+	 * Constructor for the DAO.
+	 * @param clazz the entity class
+	 * @param entityManager the entity manager
+	 */
 	public AbstractDao(Class<T> clazz, EntityManager entityManager) {
 		em = entityManager;
 		entityClass = clazz;
@@ -107,9 +113,9 @@ public abstract class AbstractDao<T extends IEntity> implements IDao<T> {
 	@Override
 	public T create() {
 		try {
-			return entityClass.newInstance();
+			return entityClass.getDeclaredConstructor().newInstance();
 		}
-		catch (InstantiationException | IllegalAccessException ex) {
+		catch (ReflectiveOperationException ex) {
 			return null;
 		}
 	}
@@ -150,6 +156,10 @@ public abstract class AbstractDao<T extends IEntity> implements IDao<T> {
 		remove(findById(id));
 	}
 
+	/**
+	 * Refresh the entity.
+	 * @param entity the entity to refresh
+	 */
 	public void refresh(Entity entity) {
 		em.refresh(entity);
 	}

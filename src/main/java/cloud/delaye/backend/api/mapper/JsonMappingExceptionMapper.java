@@ -3,10 +3,10 @@ package cloud.delaye.backend.api.mapper;
 import cloud.delaye.backend.api.DefaultLocationType;
 import cloud.delaye.backend.api.DefaultLocationType.LocationTypes;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import io.probedock.jee.validation.ApiErrorResponse;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.ext.Provider;
+import cloud.delaye.backend.validation.ApiErrorResponse;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.ext.Provider;
 
 /**
  * Maps JSON mapping exceptions (type check errors) to an HTTP 400 Bad Request API response.

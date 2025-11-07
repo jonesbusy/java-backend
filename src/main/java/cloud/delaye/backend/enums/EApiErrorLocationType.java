@@ -1,6 +1,6 @@
 package cloud.delaye.backend.enums;
 
-import io.probedock.jee.validation.IErrorLocationType;
+import cloud.delaye.backend.validation.IErrorLocationType;
 
 
 
@@ -11,14 +11,26 @@ import io.probedock.jee.validation.IErrorLocationType;
  */
 public enum EApiErrorLocationType implements IErrorLocationType {
 
+	/** JSON location type. */
 	JSON("json"), 
+	/** Query parameter location type. */
 	QUERY_PARAM("queryParam"),
+	/** Path parameter location type. */
 	PATH_PARAM("pathParam"),
+	/** Form parameter location type. */
 	FORM_PARAM("formParam"),
+	/** Header location type. */
 	HEADER("header");
 	
+	/**
+	 * The location type string.
+	 */
 	private final String locationType;
 
+	/**
+	 * Constructor for location types.
+	 * @param locationType the location type string
+	 */
 	private EApiErrorLocationType(String locationType) {
 		this.locationType = locationType;
 	}
@@ -28,6 +40,11 @@ public enum EApiErrorLocationType implements IErrorLocationType {
 		return locationType;
 	}
 	
+	/**
+	 * Find a location type by its string value.
+	 * @param value the value to search for
+	 * @return the location type or null if not found
+	 */
 	public static EApiErrorLocationType fromLocationType(String value) {
 		for(EApiErrorLocationType type : EApiErrorLocationType.values()) {
 			if(type.getLocationType().equals(value)) {

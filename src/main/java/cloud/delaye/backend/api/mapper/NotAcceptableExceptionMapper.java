@@ -3,9 +3,9 @@ package cloud.delaye.backend.api.mapper;
 
 import cloud.delaye.backend.api.DefaultLocationType;
 import cloud.delaye.backend.api.DefaultLocationType.LocationTypes;
-import io.probedock.jee.validation.ApiErrorResponse;
-import javax.ws.rs.NotAcceptableException;
-import javax.ws.rs.ext.Provider;
+import cloud.delaye.backend.validation.ApiErrorResponse;
+import jakarta.ws.rs.NotAcceptableException;
+import jakarta.ws.rs.ext.Provider;
 
 
 /**
@@ -16,6 +16,13 @@ import javax.ws.rs.ext.Provider;
 @Provider
 @DefaultLocationType(LocationTypes.HEADER_LOCATION_TYPE)
 public class NotAcceptableExceptionMapper extends AbstractApiExceptionMapper<NotAcceptableException> {
+
+	/**
+	 * Default constructor.
+	 */
+	public NotAcceptableExceptionMapper() {
+	}
+
 
 	@Override
 	protected ApiErrorResponse toApiErrorResponse(NotAcceptableException exception) {

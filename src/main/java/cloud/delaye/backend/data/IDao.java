@@ -1,7 +1,7 @@
 package cloud.delaye.backend.data;
 
 import java.util.List;
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 /**
  * Base interface for all entity DAO

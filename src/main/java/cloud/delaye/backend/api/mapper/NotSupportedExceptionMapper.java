@@ -3,9 +3,9 @@ package cloud.delaye.backend.api.mapper;
 
 import cloud.delaye.backend.api.DefaultLocationType;
 import cloud.delaye.backend.api.DefaultLocationType.LocationTypes;
-import io.probedock.jee.validation.ApiErrorResponse;
-import javax.ws.rs.NotSupportedException;
-import javax.ws.rs.ext.Provider;
+import cloud.delaye.backend.validation.ApiErrorResponse;
+import jakarta.ws.rs.NotSupportedException;
+import jakarta.ws.rs.ext.Provider;
 
 /**
  * Maps Jersey not supported exceptions to an HTTP 415 Unsupported Media Type API response.

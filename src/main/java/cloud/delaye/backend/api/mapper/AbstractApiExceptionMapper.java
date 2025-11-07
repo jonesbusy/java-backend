@@ -1,11 +1,11 @@
 package cloud.delaye.backend.api.mapper;
 
 import cloud.delaye.backend.api.MapperMapping;
-import io.probedock.jee.validation.ApiErrorResponse;
-import io.probedock.jee.validation.IErrorCode;
-import io.probedock.jee.validation.IErrorLocationType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
+import cloud.delaye.backend.validation.ApiErrorResponse;
+import cloud.delaye.backend.validation.IErrorCode;
+import cloud.delaye.backend.validation.IErrorLocationType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
 import cloud.delaye.backend.api.BackendResponse;
 
 /**
@@ -15,6 +15,12 @@ import cloud.delaye.backend.api.BackendResponse;
  * @param <E> Type of exception
  */
 public abstract class AbstractApiExceptionMapper<E extends Exception> implements ExceptionMapper<E> {
+
+	/**
+	 * Default constructor.
+	 */
+	public AbstractApiExceptionMapper() {
+	}
 
 	@Override
 	public Response toResponse(E exception) {
@@ -30,11 +36,17 @@ public abstract class AbstractApiExceptionMapper<E extends Exception> implements
 		return response.build();
 	}
 
+	/**
+	 * Enrich the response with additional information.
+	 * Override this method to add custom behavior.
+	 * @param apiResponse the response to enrich
+	 */
 	protected void enrich(BackendResponse apiResponse) {
 		// do nothing to avoid forcing to implement that method
 	}
 	
 	/**
+	 * Get the error code for this exception mapper.
 	 * @return Error code of this ExceptionMapper
 	 */
 	protected IErrorCode getCode() {
@@ -42,6 +54,7 @@ public abstract class AbstractApiExceptionMapper<E extends Exception> implements
 	}
 	
 	/**
+	 * Get the location type for this exception mapper.
 	 * @return Location type of this ExceptionMapper
 	 */
 	protected IErrorLocationType getLocationType() {

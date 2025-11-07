@@ -11,6 +11,13 @@ import java.util.Set;
  * @author Valentin Delaye (jonesbusy@gmail.com)
  */
 public class MapperMapping {
+	
+	/**
+	 * Private constructor to prevent instantiation.
+	 */
+	private MapperMapping() {
+	}
+	
 	/**
 	 * Mapping configuration
 	 */
@@ -36,6 +43,7 @@ public class MapperMapping {
 	}
 	
 	/**
+	 * Retrieve the list of mappings.
 	 * @return Retrieve the list of mappings
 	 */
 	public static Set<Class<? extends AbstractApiExceptionMapper>> getExceptionMapperClasses() {

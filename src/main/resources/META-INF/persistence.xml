@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
   <!-- Main persistence unit -->
   <persistence-unit name="PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
@@ -12,10 +12,10 @@
       <property name="eclipselink.logging.level" value="ALL"/>
       <property name="eclipselink.logging.level.sql" value="ALL"/>
       <property name="eclipselink.logging.parameters" value="true"/>
-      <property name="javax.persistence.jdbc.driver" value="${delaye.cloud.backend.db.driver}"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://${delaye.cloud.backend.db.host}/${delaye.cloud.backend.db.name}?autoReconnectForPools=true&amp;reconnectAtTxEnd=true&amp;autoCommit=true"/>
-      <property name="javax.persistence.jdbc.user" value="${delaye.cloud.backend.db.username}"/>
-      <property name="javax.persistence.jdbc.password" value="${delaye.cloud.backend.db.password}"/>
+      <property name="jakarta.persistence.jdbc.driver" value="${delaye.cloud.backend.db.driver}"/>
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://${delaye.cloud.backend.db.host}/${delaye.cloud.backend.db.name}?autoReconnectForPools=true&amp;reconnectAtTxEnd=true&amp;autoCommit=true"/>
+      <property name="jakarta.persistence.jdbc.user" value="${delaye.cloud.backend.db.username}"/>
+      <property name="jakarta.persistence.jdbc.password" value="${delaye.cloud.backend.db.password}"/>
       <property name="eclipselink.cache.shared.default" value="false"/>
       <property name="eclipselink.target-database" value="MySQL"/>
     </properties>

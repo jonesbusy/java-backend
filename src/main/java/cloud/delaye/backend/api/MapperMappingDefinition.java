@@ -1,8 +1,8 @@
 package cloud.delaye.backend.api;
 
 import cloud.delaye.backend.api.mapper.AbstractApiExceptionMapper;
-import io.probedock.jee.validation.IErrorCode;
-import io.probedock.jee.validation.IErrorLocationType;
+import cloud.delaye.backend.validation.IErrorCode;
+import cloud.delaye.backend.validation.IErrorLocationType;
 
 /**
  * Mapping definition to bind an ExceptionMapper with an ErrorCode and LocationType

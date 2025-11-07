@@ -1,7 +1,7 @@
 package cloud.delaye.backend.task;
 
 import java.net.URISyntaxException;
-import javax.jms.JMSException;
+import jakarta.jms.JMSException;
 import org.fusesource.hawtbuf.Buffer;
 import org.fusesource.hawtbuf.UTF8Buffer;
 import org.fusesource.mqtt.client.Callback;

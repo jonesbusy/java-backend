@@ -4,16 +4,28 @@
 
 | Dependency | Version | Description |
 | ---------- | ------- | ----------- |
-| Java | >=1.8| Java |
-| Maven | 3.5.0| Maven |
+| Java | 21| Java Development Kit |
+| Maven | 3.6.0+| Maven Build Tool |
 | Docker | >=17.06.2-ce | Docker engine |
 | Docker compose | >=1.16.1 | Container Composition |
 
-## Build an run the project
+## Build and run the project
 
+### Using Maven
+
+```bash
+mvn clean compile
 ```
+
+### Using Docker
+
+```bash
 ./build.sh
 ```
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration. The workflow automatically builds the project on every push and pull request.
 
 
 ## Test API
