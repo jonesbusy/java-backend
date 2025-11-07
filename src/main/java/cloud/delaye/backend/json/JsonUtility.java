@@ -14,6 +14,13 @@ import jakarta.ws.rs.ext.ContextResolver;
  * @author Valentin Delaye (jonesbusy@gmail.com)
  */
 public class JsonUtility {
+
+	/**
+	 * Private constructor to prevent instantiation.
+	 */
+	private JsonUtility() {
+	}
+
 	
 	/**
 	 * The default JSON object mapper

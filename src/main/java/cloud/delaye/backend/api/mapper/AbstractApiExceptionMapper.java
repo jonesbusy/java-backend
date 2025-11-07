@@ -16,6 +16,12 @@ import cloud.delaye.backend.api.BackendResponse;
  */
 public abstract class AbstractApiExceptionMapper<E extends Exception> implements ExceptionMapper<E> {
 
+	/**
+	 * Default constructor.
+	 */
+	public AbstractApiExceptionMapper() {
+	}
+
 	@Override
 	public Response toResponse(E exception) {
 
@@ -30,11 +36,17 @@ public abstract class AbstractApiExceptionMapper<E extends Exception> implements
 		return response.build();
 	}
 
+	/**
+	 * Enrich the response with additional information.
+	 * Override this method to add custom behavior.
+	 * @param apiResponse the response to enrich
+	 */
 	protected void enrich(BackendResponse apiResponse) {
 		// do nothing to avoid forcing to implement that method
 	}
 	
 	/**
+	 * Get the error code for this exception mapper.
 	 * @return Error code of this ExceptionMapper
 	 */
 	protected IErrorCode getCode() {
@@ -42,6 +54,7 @@ public abstract class AbstractApiExceptionMapper<E extends Exception> implements
 	}
 	
 	/**
+	 * Get the location type for this exception mapper.
 	 * @return Location type of this ExceptionMapper
 	 */
 	protected IErrorLocationType getLocationType() {

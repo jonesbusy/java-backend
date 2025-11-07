@@ -15,6 +15,13 @@ import jakarta.ws.rs.ext.Provider;
 @DefaultLocationType(LocationTypes.JSON_LOCATION_TYPE)
 public class UnrecognizedPropertyExceptionMapper extends AbstractJsonExceptionMapper<UnrecognizedPropertyException> {
 
+	/**
+	 * Default constructor.
+	 */
+	public UnrecognizedPropertyExceptionMapper() {
+	}
+
+
 	@Override
 	protected ApiErrorResponse toApiErrorResponse(UnrecognizedPropertyException upe) {
 		return new ApiErrorResponse(

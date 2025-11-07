@@ -13,6 +13,13 @@ import jakarta.ws.rs.ext.Provider;
 @Provider
 public class ApiErrorsExceptionMapper extends AbstractApiExceptionMapper<ApiErrorsException> {
 
+	/**
+	 * Default constructor.
+	 */
+	public ApiErrorsExceptionMapper() {
+	}
+
+
 	@Override
 	protected ApiErrorResponse toApiErrorResponse(ApiErrorsException exception) {
 			return exception.getErrorResponse();

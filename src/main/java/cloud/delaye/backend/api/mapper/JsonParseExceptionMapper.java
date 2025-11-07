@@ -15,6 +15,13 @@ import jakarta.ws.rs.ext.Provider;
 @DefaultLocationType(DefaultLocationType.LocationTypes.JSON_LOCATION_TYPE)
 public class JsonParseExceptionMapper extends AbstractJsonExceptionMapper<JsonParseException> {
 
+	/**
+	 * Default constructor.
+	 */
+	public JsonParseExceptionMapper() {
+	}
+
+
 	@Override
 	protected ApiErrorResponse toApiErrorResponse(JsonParseException jpe) {
 		return new ApiErrorResponse(buildMessage(jpe), 

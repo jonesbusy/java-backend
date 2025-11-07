@@ -13,6 +13,13 @@ import java.util.Map;
  */
 @JsonPropertyOrder(EventTo.ID)
 public class EventTo {
+
+	/**
+	 * Default constructor.
+	 */
+	public EventTo() {
+	}
+
 	
 	//<editor-fold defaultstate="collapsed" desc="Constants">
 	public static final String ID = "id";

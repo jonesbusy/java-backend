@@ -35,10 +35,16 @@ public abstract class AbstractDao<T extends IEntity> implements IDao<T> {
 	 */
 	private EntityTransaction transaction;
 	
-	// The entity type managed by the DAO
+	/**
+	 * The entity type managed by the DAO.
+	 */
 	private final Class<T> entityClass;
 	
-	//<editor-fold defaultstate="collapsed" desc="Constructors">
+	/**
+	 * Constructor for the DAO.
+	 * @param clazz the entity class
+	 * @param entityManager the entity manager
+	 */
 	public AbstractDao(Class<T> clazz, EntityManager entityManager) {
 		em = entityManager;
 		entityClass = clazz;
@@ -143,6 +149,10 @@ public abstract class AbstractDao<T extends IEntity> implements IDao<T> {
 	@Override
 	public void remove(T entity) {
 		em.remove(attach(entity));
+/**
+	 * Get the entity manager.
+	 * @return the entity manager
+	 */
 	}
 
 	@Override
@@ -237,6 +247,12 @@ public abstract class AbstractDao<T extends IEntity> implements IDao<T> {
 	}
 
 	/**
+/**
+	 * Execute a typed query.
+	 * @param <U> the result type
+	 * @param query the query to execute
+	 * @return the query result
+	 */
 	 * Create a query from a query string
 	 *
 	 * @param queryString The query string to get the query object

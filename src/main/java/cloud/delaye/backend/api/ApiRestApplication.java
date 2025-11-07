@@ -25,6 +25,12 @@ import jakarta.ws.rs.core.Application;
  */
 public class ApiRestApplication extends Application {
 	
+	/**
+	 * Default constructor.
+	 */
+	public ApiRestApplication() {
+	}
+
 	@Override
 	public Set<Object> getSingletons() {
 		final Set<Object> singletons = new HashSet<>(4);

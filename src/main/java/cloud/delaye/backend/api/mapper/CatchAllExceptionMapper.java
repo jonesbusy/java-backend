@@ -15,9 +15,16 @@ import org.slf4j.LoggerFactory;
 @Provider
 public class CatchAllExceptionMapper extends AbstractApiExceptionMapper<Exception> {
 
-	//<editor-fold defaultstate="collapsed" desc="Logger">
+	/**
+	 * Logger for this class.
+	 */
 	private Logger log = LoggerFactory.getLogger(CatchAllExceptionMapper.class);
-	//</editor-fold>
+	
+	/**
+	 * Default constructor.
+	 */
+	public CatchAllExceptionMapper() {
+	}
 	
 	@Override
 	public ApiErrorResponse toApiErrorResponse(Exception exception) {

@@ -13,6 +13,13 @@ import jakarta.ws.rs.ext.Provider;
 @Provider
 public class NotFoundExceptionMapper extends AbstractApiExceptionMapper<NotFoundException> {
 
+	/**
+	 * Default constructor.
+	 */
+	public NotFoundExceptionMapper() {
+	}
+
+
 	@Override
 	protected ApiErrorResponse toApiErrorResponse(NotFoundException exception) {
 		return new ApiErrorResponse(

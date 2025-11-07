@@ -17,6 +17,13 @@ import jakarta.ws.rs.ext.Provider;
 @DefaultLocationType(LocationTypes.HEADER_LOCATION_TYPE)
 public class NotAcceptableExceptionMapper extends AbstractApiExceptionMapper<NotAcceptableException> {
 
+	/**
+	 * Default constructor.
+	 */
+	public NotAcceptableExceptionMapper() {
+	}
+
+
 	@Override
 	protected ApiErrorResponse toApiErrorResponse(NotAcceptableException exception) {
 		return new ApiErrorResponse(
