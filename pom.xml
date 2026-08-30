@@ -31,7 +31,7 @@
 		<maven.compiler.target>21</maven.compiler.target>
 		
 		<!-- MariaDB connector -->
-		<delaye.cloud.mariadb.connector.version>3.3.1</delaye.cloud.mariadb.connector.version>
+		<delaye.cloud.mariadb.connector.version>3.3.5</delaye.cloud.mariadb.connector.version>
 		
 		<!-- Database connection -->
 		<delaye.cloud.backend.db.name>JAVA-BACKEND</delaye.cloud.backend.db.name>
@@ -562,7 +562,7 @@
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
-			<version>3.3.1</version>
+			<version>3.3.5</version>
 		</dependency>	
 			
 		<dependency>
